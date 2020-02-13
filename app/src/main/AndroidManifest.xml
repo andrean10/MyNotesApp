@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dicoding.mynotesappmodul4">
+    package="com.dicoding.mynotesapp">
+
+    <permission
+        android:name="com.dicoding.mynotesapp.READ_DATABASE"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.dicoding.mynotesapp.WRITE_DATABASE"
+        android:protectionLevel="normal" />
 
     <application
         android:allowBackup="true"
@@ -9,8 +16,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NoteAddUpdateActivity"></activity>
-        <activity android:name=".MainActivity">
+        <provider
+            android:name=".provider.NoteProvider"
+            android:authorities="com.dicoding.mynotesapp"
+            android:exported="true"
+            android:readPermission="com.dicoding.mynotesapp.READ_DATABASE"
+            android:writePermission="com.dicoding.mynotesapp.WRITE_DATABASE" />
+
+        <activity android:name="com.dicoding.mynotesapp.NoteAddUpdateActivity" />
+        <activity android:name="com.dicoding.mynotesapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
